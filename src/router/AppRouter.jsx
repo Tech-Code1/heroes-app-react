@@ -6,18 +6,19 @@ import {
   } from "react-router-dom";
 import { LoginPage } from "../auth/pages";
 import { childHeroesRoutes, HeroesRoutes } from "../heroes/routes/HeroesRoutes";
+import { PrivateRouter } from "./PrivateRouter";
+import { PublicRoute } from "./PublicRoute";
   
   const router = createBrowserRouter([
          
         {
           path: "/login",
-          element: <LoginPage />,
+          element: <PublicRoute> <LoginPage /> </PublicRoute>,
         },
         {
           path: "/",
-          element: <HeroesRoutes />,
-          children: childHeroesRoutes,
-
+          element: <PrivateRouter> <HeroesRoutes /> </PrivateRouter>,
+          children: childHeroesRoutes,        
         },
     
   ]);
